@@ -22,8 +22,16 @@ const toDoSlice = createSlice({
           deleteTodo: (state, action) => {
             state.toDoList = state.toDoList.filter((item) => item.id !== action.payload);
           },
+          // editTodo: (state, action) => {
+          //   const { id, newText } = action.payload;
+          //   const todo = state.toDoList.find((item) => item.id === id);
+          //   if (todo) {
+          //     todo.text = newText;
+          //   }
+          // },
           editTodo: (state, action) => {
             const { id, newText } = action.payload;
+            if (!newText.trim()) return; // Prevent editing with empty text
             const todo = state.toDoList.find((item) => item.id === id);
             if (todo) {
               todo.text = newText;
